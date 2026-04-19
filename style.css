@@ -1,0 +1,294 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,body{
+  width:100%;
+  min-height:100%;
+  font-family:'Roboto', sans-serif;
+  color:white;
+}
+
+body{
+  background:url("pupini-sfondo.png") center center / cover no-repeat fixed;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* overlay elegante */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.30);
+  z-index:-1;
+}
+
+/* ================= LOADER ================= */
+
+#loader{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.trail-wrap{
+  position:relative;
+  width:80%;
+  max-width:700px;
+  height:160px;
+  overflow:hidden;
+}
+
+.runner{
+  position:absolute;
+  top:50%;
+  left:-120px;
+  width:90px;
+  transform:translateY(-50%);
+  animation:runAcross 2.5s linear infinite;
+}
+
+.trail{
+  position:absolute;
+  top:50%;
+  left:-100px;
+  height:18px;
+  border-radius:50px;
+  transform:translateY(-50%);
+  background:linear-gradient(to right, rgba(255,255,255,.8), transparent);
+  animation:trailMove 2.5s linear infinite;
+}
+
+.t1{ width:140px; animation-delay:0s; }
+.t2{ width:110px; animation-delay:.12s; opacity:.6; }
+.t3{ width:80px; animation-delay:.22s; opacity:.4; }
+
+@keyframes runAcross{
+  from{ left:-120px; }
+  to{ left:110%; }
+}
+
+@keyframes trailMove{
+  from{ left:-160px; opacity:.8; }
+  to{ left:100%; opacity:0; }
+}
+
+/* ================= PAGE ================= */
+
+.hidden{
+  opacity:0;
+}
+
+.page{
+  width:100%;
+  min-height:100vh;
+  padding:40px 20px 160px;
+  display:flex;
+  justify-content:center;
+}
+
+.hero{
+  width:100%;
+  max-width:900px;
+  text-align:center;
+}
+
+h1{
+  font-size:3rem;
+  font-weight:900;
+  text-shadow:0 4px 18px rgba(0,0,0,.4);
+  margin-bottom:35px;
+}
+
+/* FOTO PRINCIPALE */
+
+.floating-zone{
+  position:relative;
+  width:280px;
+  margin:0 auto 45px;
+  height:340px;
+}
+
+.main-photo{
+  width:280px;
+  height:280px;
+  object-fit:cover;
+  border-radius:28px;
+  border:8px solid rgba(255,255,255,.95);
+  box-shadow:0 20px 35px rgba(0,0,0,.35);
+  position:relative;
+  z-index:2;
+  animation:
+    spinStart 3.5s ease-out forwards,
+    floaty 2.2s ease-in-out infinite 3.5s;
+}
+
+.shadow{
+  width:180px;
+  height:30px;
+  background:rgba(0,0,0,.28);
+  filter:blur(8px);
+  border-radius:50%;
+  position:absolute;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  animation:shadowPulse 2.2s ease-in-out infinite 3.5s;
+}
+
+@keyframes spinStart{
+  0%{
+    transform:rotate(0deg) scale(.5);
+    opacity:0;
+  }
+  70%{
+    transform:rotate(1260deg) scale(1.05);
+    opacity:1;
+  }
+  100%{
+    transform:rotate(1440deg) scale(1);
+    opacity:1;
+  }
+}
+
+@keyframes floaty{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-14px); }
+}
+
+@keyframes shadowPulse{
+  0%,100%{
+    width:180px;
+    opacity:.28;
+  }
+  50%{
+    width:145px;
+    opacity:.18;
+  }
+}
+
+/* TESTO */
+
+.text-box{
+  background:rgba(255,255,255,.18);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:24px;
+  padding:28px;
+  line-height:1.8;
+  font-size:1.12rem;
+  box-shadow:0 15px 35px rgba(0,0,0,.18);
+  text-shadow:0 1px 4px rgba(0,0,0,.45);
+}
+
+/* FOOTER */
+
+.footer{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  padding:12px 18px;
+  background:linear-gradient(to top, rgba(0,0,0,.55), transparent);
+}
+
+.footer-left{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.footer-left img{
+  width:62px;
+  height:62px;
+  object-fit:cover;
+  border-radius:14px;
+  border:2px solid rgba(255,255,255,.85);
+}
+
+.footer-text{
+  display:flex;
+  flex-direction:column;
+  font-size:.95rem;
+}
+
+.footer-text strong{
+  font-weight:700;
+}
+
+.footer-text span{
+  font-size:.82rem;
+  opacity:.9;
+  margin-top:3px;
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 900px){
+  h1{
+    font-size:2.4rem;
+  }
+
+  .text-box{
+    font-size:1rem;
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px){
+
+  .page{
+    padding:28px 16px 180px;
+  }
+
+  h1{
+    font-size:1.8rem;
+    line-height:1.25;
+  }
+
+  .floating-zone{
+    width:220px;
+    height:270px;
+  }
+
+  .main-photo{
+    width:220px;
+    height:220px;
+    border-width:6px;
+  }
+
+  .shadow{
+    bottom:12px;
+    width:130px;
+    height:24px;
+  }
+
+  .text-box{
+    padding:20px;
+    border-radius:18px;
+    font-size:.96rem;
+    line-height:1.7;
+  }
+
+  .footer-left img{
+    width:52px;
+    height:52px;
+  }
+
+  .footer-text{
+    font-size:.82rem;
+  }
+
+  .footer-text span{
+    font-size:.74rem;
+  }
+}
