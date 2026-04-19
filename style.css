@@ -50,7 +50,7 @@ body::before{
   position:absolute;
   top:50%;
   right:-180px;
-  width:320px;
+  width:400px;
   transform:translateY(-50%);
   animation:runAcrossReverse 2.5s linear infinite;
 }
